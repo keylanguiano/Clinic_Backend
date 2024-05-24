@@ -2,3 +2,4 @@ node_modules
 src/config/serviceAccountKey.json
 .env
 serviceAccountKey.json
+src/config/serviceAccountKey.json
