@@ -1,5 +1,4 @@
-const { use } = require('bcrypt/promises')
-const admin = require ('../config/firebase')
+const { admin, bucket } = require ('../config/firebase')
 const firestore = admin.firestore ()
 const IUser = require (('../interfaces/iUser'))
 const bcrypt = require ('bcrypt')
