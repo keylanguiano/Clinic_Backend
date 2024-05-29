@@ -1,0 +1,4 @@
+node_modules
+/src/config/serviceAccountKey.json
+.envß
+src/config/serviceAccountKey.json
