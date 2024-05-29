@@ -49,6 +49,29 @@ class Schedule extends ISchedule
         }
     }
 
+    static async findById (id)
+    {
+        try 
+        {
+            const schedule = firestore.collection ('schedules').doc (id)
+            const scheduleDoc = await schedule.get ()
+
+            if (scheduleDoc.exists)
+            {
+                const scheduleData = scheduleDoc.data ()
+
+                return new Schedule (scheduleData.id, scheduleData.email_doctor, scheduleData.name_patient, scheduleData.email_patient, scheduleData.phone_patient, scheduleData.address_patient, scheduleData.date, scheduleData.time, scheduleData.room)
+            }
+
+            return null
+        } 
+        catch (err) 
+        {
+            console.log ('@ Keyla => Error ', err)
+            throw new Error ('Error finding schedule by id')
+        }
+    }
+
     static async findByDoctorAndDate (email_doctor, date)
     {
         try 

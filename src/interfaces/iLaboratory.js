@@ -1,4 +1,4 @@
-class ISchedule
+class ILaboratory
 {
     /*  Crea la nueva cita
         @param {int} id: Id de la cita
