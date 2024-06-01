@@ -20,7 +20,7 @@ class IScheduleDetails
 
         @throws {error}: Si hay error en la creación
     */
-    static async createScheduleDetails (id, email_doctor, email_patient, sugar, oxygen_saturation, blood_pressure, diagnostic, diagnostic_details, degree, comments, treatment, prescription, payment, payment_completed) {}
+    static async createScheduleDetails (id, email_doctor, email_patient, sugar, oxygen_saturation, blood_pressure, diagnostic, diagnostic_details, degree, comments, treatment, medication, prescription, payment, payment_completed) {}
 
     /*  Busca los detalles de la cita por doctor
     @param {string} email: Correo del doctor

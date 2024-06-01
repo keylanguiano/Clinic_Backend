@@ -4,7 +4,7 @@ const firestore = admin.firestore ()
 
 class ScheduleDetails extends IScheduleDetails
 {
-    constructor (id, email_doctor, email_patient, sugar, oxygen_saturation, blood_pressure, diagnostic, diagnostic_details, degree, comments, treatment, prescription, payment, payment_completed)
+    constructor (id, email_doctor, email_patient, sugar, oxygen_saturation, blood_pressure, diagnostic, diagnostic_details, degree, comments, treatment, medication, prescription, payment, payment_completed)
     {
         super ()
         this.id = id
@@ -17,17 +17,18 @@ class ScheduleDetails extends IScheduleDetails
         this.diagnostic_details = diagnostic_details
         this.degree = degree
         this.comments = comments
+        this.medication = medication
         this.treatment = treatment
         this.prescription = prescription
         this.payment = payment
         this.payment_completed = payment_completed
     }
 
-    static async createScheduleDetails (id, email_doctor, email_patient, sugar, oxygen_saturation, blood_pressure, diagnostic, diagnostic_details, degree, comments, treatment, prescription, payment, payment_completed)
+    static async createScheduleDetails (id, email_doctor, email_patient, sugar, oxygen_saturation, blood_pressure, diagnostic, diagnostic_details, degree, comments, treatment, medication, prescription, payment, payment_completed)
     {
         try 
         {
-            console.log ('Data model', id, email_doctor, email_patient, sugar, oxygen_saturation, blood_pressure, diagnostic, diagnostic_details, degree, comments, treatment, prescription, payment, payment_completed)
+            console.log ('Data model', id, email_doctor, email_patient, sugar, oxygen_saturation, blood_pressure, diagnostic, diagnostic_details, degree, comments, treatment, medication, prescription, payment, payment_completed)
             
             const scheduleDetails = firestore.collection ('schedule_details').doc (id)
 
@@ -44,12 +45,13 @@ class ScheduleDetails extends IScheduleDetails
                 degree,
                 comments,
                 treatment,
+                medication,
                 prescription,
                 payment,
                 payment_completed
             })
 
-            return new ScheduleDetails (id, email_doctor, email_patient, sugar, oxygen_saturation, blood_pressure, diagnostic, diagnostic_details, degree, comments, treatment, prescription, payment, payment_completed)
+            return new ScheduleDetails (id, email_doctor, email_patient, sugar, oxygen_saturation, blood_pressure, diagnostic, diagnostic_details, degree, comments, medication, treatment, prescription, payment, payment_completed)
         } 
         catch (err) 
         {
