@@ -15,26 +15,26 @@ router.post ('/register-doctor', upload.single('photo'), registerDoctor);
 router.post ('/login-doctor', loginDoctor)
 router.get ('/get-all-doctors', authenticateToken, getAllDoctors)
 router.delete ('/doctors/:email', authenticateToken, deleteDoctor)
-router.put ('/doctors/:email', upload.single('photo'), updateDoctor)
+router.put ('/doctors/:email', upload.single('photo'), authenticateToken, updateDoctor)
 
-router.post ('/register-patient', upload.single('photo'), registerPatient)
+router.post ('/register-patient', upload.single('photo'), authenticateToken, registerPatient)
 router.get ('/get-all-patients', authenticateToken, getAllPatients)
 router.delete ('/patients/:email', authenticateToken, deletePatient)
 router.put ('/patients/:email', upload.single('photo'), authenticateToken, updatePatient)
 
-router.post ('/register-medicine', registerMedicine)
+router.post ('/register-medicine', authenticateToken, registerMedicine)
 router.get ('/get-all-medicines', authenticateToken, getAllMedicines)
 router.delete ('/medicines/:name', authenticateToken, deleteMedicine)
 router.put ('/medicines/:name', authenticateToken, updateMedicine)
 
-router.post ('/register-schedule', registerSchedule)
+router.post ('/register-schedule', authenticateToken, registerSchedule)
 router.get ('/get-all-schedules', authenticateToken, getAllSchedules)
 router.delete ('/schedules/:id', authenticateToken, deleteSchedule)
 router.put ('/schedules/:id', authenticateToken, updateSchedule)
 router.get ('/get-available-date-time-schedules', authenticateToken, getAvailableDateTimeSchedules)
 
-router.post ('/register-schedule-details', registerScheduleDetails)
-router.get ('/get-all-schedules-details', getAllSchedulesDetails)
+router.post ('/register-schedule-details', authenticateToken, registerScheduleDetails)
+router.get ('/get-all-schedules-details', authenticateToken, getAllSchedulesDetails)
 router.delete ('/schedules-details/:id', authenticateToken, deleteScheduleDetails)
 router.put ('/schedules-details/:id', authenticateToken, updateScheduleDetails)
 

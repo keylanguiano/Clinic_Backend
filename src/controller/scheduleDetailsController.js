@@ -8,11 +8,11 @@ const registerScheduleDetails = async (req, res) =>
 {
     try 
     {
-        const { id, email_doctor, email_patient, sugar, oxygen_saturation, blood_pressure, diagnostic, diagnostic_details, degree, comments, treatment, prescription, payment, payment_completed } = req.body
+        const { id, email_doctor, email_patient, sugar, oxygen_saturation, blood_pressure, diagnostic, diagnostic_details, degree, comments, treatment, medication, prescription, payment, payment_completed } = req.body
 
-        console.log('@ Keyla => Data controller',id, email_doctor, email_patient, sugar, oxygen_saturation, blood_pressure, diagnostic, diagnostic_details, degree, comments, treatment, prescription, payment, payment_completed)
+        console.log('@ Keyla => Data controller',id, email_doctor, email_patient, sugar, oxygen_saturation, blood_pressure, diagnostic, diagnostic_details, degree, comments, treatment, medication, prescription, payment, payment_completed)
 
-        const newScheduleDetails = await scheduleDetails.createScheduleDetails (id, email_doctor, email_patient, sugar, oxygen_saturation, blood_pressure, diagnostic, diagnostic_details, degree, comments, treatment, prescription, payment, payment_completed)
+        const newScheduleDetails = await scheduleDetails.createScheduleDetails (id, email_doctor, email_patient, sugar, oxygen_saturation, blood_pressure, diagnostic, diagnostic_details, degree, comments, treatment, medication, prescription, payment, payment_completed)
 
         console.log ('@ Keyla => schedule', newScheduleDetails)
 
@@ -104,6 +104,8 @@ const updateScheduleDetails = async (req, res) =>
 {
     const id = req.params.id
     const data = req.body
+
+    console.log('updateScheduleDetails id, data', id, data)
 
     try 
     {
