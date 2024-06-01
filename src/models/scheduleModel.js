@@ -1,7 +1,7 @@
 const { admin, bucket } = require ('../config/firebase')
 const firestore = admin.firestore ()
 const ISchedule = require (('../interfaces/iSchedule'))
-
+const { DateTime } = require('luxon')
 class Schedule extends ISchedule
 {
     constructor (id, email_doctor, name_patient, email_patient, phone_patient, address_patient, date, time, room)
@@ -210,17 +210,36 @@ class Schedule extends ISchedule
 
     static async updateSchedule (id, data)
     {
-        try 
-        {
-            await firestore.collection ('schedules'). doc (id).update (data)
+        try {
+            const oldDoc = firestore.collection('schedules').doc(id)
+            const docSnapshot = await oldDoc.get()
 
-            const scheduleUpdated = await firestore.collection ('schedules'). doc (id).get ()
+            if (!docSnapshot.exists) {
+                throw new Error('@ Keyla => Document with the old ID does not exist')
+            }
 
-            return scheduleUpdated.data ()
-        } 
-        catch (err) 
-        {
-            console.log ('@ Keyla => Error ', err)
+            const docData = docSnapshot.data()
+            
+            const now = DateTime.now().setZone('America/Mexico_City')
+            const newId = now.toFormat('yyyyMMddHHmmss')
+
+            console.log('@ Keyla => new id ', newId)
+
+            const newDoc = firestore.collection('schedules').doc(newId);
+
+            const updatedData = {
+                ...docData,
+                ...data,
+                id: newId
+            };
+
+            await newDoc.set(updatedData)
+
+            await oldDoc.delete()
+
+            return updatedData
+        } catch (err) {
+            console.log('@ Keyla => Error ', err)
             throw err
         }
     }

@@ -2,6 +2,7 @@ const jwt = require ('jsonwebtoken')
 const schedule = require ('../models/scheduleModel')
 const patient = require ('../models/patientModel')
 const doctor = require ('../models/doctorModel')
+const { DateTime } = require('luxon')
 
 const getAvailableDateTimeSchedules = async (req, res) =>
 {
@@ -92,7 +93,10 @@ const registerSchedule = async (req, res) =>
             })
         }
 
-        const id = new Date().toISOString().replace(/[:.-]/g, '').replace('T', '')
+        const now = DateTime.now().setZone('America/Mexico_City')
+        const id = now.toFormat('yyyyMMddHHmmss')
+        
+        console.log('@ Keyla => id ', id)
 
         const newSchedule = await schedule.createSchedule (id, email_doctor, name_patient, email_patient, phone_patient, address_patient, date, time, room)
 
