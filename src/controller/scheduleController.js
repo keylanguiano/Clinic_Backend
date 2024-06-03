@@ -133,7 +133,7 @@ const getAllSchedules = async (req, res) =>
             {
                 const patientData = await patient.findByEmail (schedule.email_patient)
                 const doctorData = await doctor.findByEmail (schedule.email_doctor)
-                
+
                 return {
                     ...schedule,
                     patient: patientData,
@@ -152,7 +152,7 @@ const getAllSchedules = async (req, res) =>
     } 
     catch (err) 
     {
-        console.log('Internal Server Error Controller')
+        console.log('Internal Server Error Controller schedule get all', err)
 
         res.status (500).json
         ({
