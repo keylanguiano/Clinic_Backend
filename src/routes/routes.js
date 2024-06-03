@@ -11,6 +11,7 @@ const { registerMedicine, getAllMedicines, deleteMedicine, updateMedicine } = re
 const { registerSchedule, getAllSchedules, deleteSchedule, updateSchedule, getAvailableDateTimeSchedules } = require ('./../controller/scheduleController')
 const { registerScheduleDetails, getAllSchedulesDetails, deleteScheduleDetails, updateScheduleDetails} = require ('./../controller/scheduleDetailsController')
 const { registerAdmin, getAllAdmins, deleteAdmin, updateAdmin } = require ('./../controller/adminController')
+const { registerTest, getAllTests, deleteTest, updateTest } = require ('./../controller/testController')
 
 router.post ('/register-doctor', upload.single('photo'), registerDoctor);
 router.post ('/login-doctor', loginDoctor)
@@ -39,9 +40,14 @@ router.get ('/get-all-schedules-details', authenticateToken, getAllSchedulesDeta
 router.delete ('/schedules-details/:id', authenticateToken, deleteScheduleDetails)
 router.put ('/schedules-details/:id', authenticateToken, updateScheduleDetails)
 
-router.post ('/register-admin', registerAdmin)
-router.get ('/get-all-admins', getAllAdmins)
+router.post ('/register-admin', authenticateToken, registerAdmin)
+router.get ('/get-all-admins', authenticateToken, getAllAdmins)
 router.delete ('/admins/:email', authenticateToken, deleteAdmin)
 router.put ('/admins/:email', authenticateToken, updateAdmin)
+
+router.post ('/register-test', registerTest)
+router.get ('/get-all-tests', getAllTests)
+router.delete ('/tests/:email', authenticateToken, deleteTest)
+router.put ('/tests/:email', authenticateToken, updateTest)
 
 module.exports = router
