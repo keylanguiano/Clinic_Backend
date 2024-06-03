@@ -10,6 +10,7 @@ const { registerPatient, getAllPatients, deletePatient, updatePatient } = requir
 const { registerMedicine, getAllMedicines, deleteMedicine, updateMedicine } = require ('./../controller/medicineController')
 const { registerSchedule, getAllSchedules, deleteSchedule, updateSchedule, getAvailableDateTimeSchedules } = require ('./../controller/scheduleController')
 const { registerScheduleDetails, getAllSchedulesDetails, deleteScheduleDetails, updateScheduleDetails} = require ('./../controller/scheduleDetailsController')
+const { registerAdmin, getAllAdmins, deleteAdmin, updateAdmin } = require ('./../controller/adminController')
 
 router.post ('/register-doctor', upload.single('photo'), registerDoctor);
 router.post ('/login-doctor', loginDoctor)
@@ -37,5 +38,10 @@ router.post ('/register-schedule-details', authenticateToken, registerScheduleDe
 router.get ('/get-all-schedules-details', authenticateToken, getAllSchedulesDetails)
 router.delete ('/schedules-details/:id', authenticateToken, deleteScheduleDetails)
 router.put ('/schedules-details/:id', authenticateToken, updateScheduleDetails)
+
+router.post ('/register-admin', registerAdmin)
+router.get ('/get-all-admins', getAllAdmins)
+router.delete ('/admins/:email', authenticateToken, deleteAdmin)
+router.put ('/admins/:email', authenticateToken, updateAdmin)
 
 module.exports = router
