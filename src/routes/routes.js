@@ -45,8 +45,8 @@ router.get ('/get-all-admins', authenticateToken, getAllAdmins)
 router.delete ('/admins/:email', authenticateToken, deleteAdmin)
 router.put ('/admins/:email', authenticateToken, updateAdmin)
 
-router.post ('/register-test', registerTest)
-router.get ('/get-all-tests', getAllTests)
+router.post ('/register-test', authenticateToken, registerTest)
+router.get ('/get-all-tests', authenticateToken, getAllTests)
 router.delete ('/tests/:email', authenticateToken, deleteTest)
 router.put ('/tests/:email', authenticateToken, updateTest)
 
