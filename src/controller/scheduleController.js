@@ -17,7 +17,7 @@ const getAvailableDateTimeSchedules = async (req, res) =>
         console.log('@ Keyla => Doctor Schedules Date ', doctorSchedulesDate)
 
         const startTime = 9 * 60;
-        const endTime = 19.5 * 60;
+        const endTime = 24 * 60;
         const interval = 30;
 
         const bookedTimes = []
